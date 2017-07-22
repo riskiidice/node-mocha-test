@@ -17,6 +17,20 @@ it('Should square number', () => {
     expect(result).toBe(25).toBeA('number');
 });
 
+it('Should asycSquare number', (done) => {
+    utils.asyncSquare(5, (res)=>{
+        expect(res).toBe(25).toBeA('number');
+        done();
+    })
+});
+
+it('Should asyncAdd two number', (done) => {
+    utils.asyncAdd(5, 3, (sum) => {
+        expect(sum).toBe(8).toBeA('number');
+        done();
+    })
+})
+
 it('Should expect some valuse', () => {
     expect({
         name: 'amp',
@@ -32,5 +46,8 @@ it('Should set firstname and lastname', () => {
     var user = { location: 'Thailand', age: 25 };
     var result = utils.setName(user, 'Tikumporn Wankvar');
 
-    expect(user).toEqual(user);
+    expect(user).toInclude({
+        firstName: 'Tikumporn',
+        lastName: 'Wankvar'
+    });
 });
